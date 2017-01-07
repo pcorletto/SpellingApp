@@ -1,0 +1,113 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context="com.example.android.spellingapp.ui.SpellingBeeActivity"
+                android:background="@color/ColorAccent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/image"
+            android:src="@drawable/spellingbee"
+            android:layout_weight=".4"
+            android:background="@color/ColorPrimaryDark"/>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight=".3">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:id="@+id/wordTextView"
+            android:textSize="72sp"
+            android:text="SamplingWord"
+            android:textColor="@android:color/white"
+            android:gravity="center_vertical|center_horizontal"
+            android:typeface="serif"/>
+
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight=".3">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_rewind"
+                android:layout_weight=".2"
+                android:id="@+id/rewindButton"
+                android:background="@color/ColorPrimary"
+                android:paddingLeft="@dimen/small_padding"
+                android:paddingRight="@dimen/small_padding"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_back"
+                android:layout_weight=".2"
+                android:id="@+id/backButton"
+                android:background="@color/ColorPrimary"
+                android:paddingRight="@dimen/small_padding"
+                android:paddingLeft="@dimen/small_padding"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_play"
+                android:layout_weight=".2"
+                android:id="@+id/playButton"
+                android:background="@color/ColorPrimary"
+                android:paddingLeft="@dimen/small_padding"
+                android:paddingRight="@dimen/small_padding"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_next"
+                android:layout_weight=".2"
+                android:id="@+id/nextButton"
+                android:background="@color/ColorPrimary"
+                android:paddingLeft="@dimen/small_padding"
+                android:paddingRight="@dimen/small_padding"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_forward"
+                android:layout_weight=".2"
+                android:id="@+id/forwardButton"
+                android:background="@color/ColorPrimary"
+                android:paddingRight="@dimen/small_padding"
+                android:paddingLeft="@dimen/small_padding"/>
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+</LinearLayout>

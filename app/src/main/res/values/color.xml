@@ -1,0 +1,10 @@
+<resources>
+
+    <color name="ColorPrimary">#E91E63</color>
+    <color name="ColorPrimaryDark">#C2185B</color>
+    <color name="ColorAccent">#E040FB</color>
+    <color name="RedHighestPriority">#DA5D42</color>
+    <color name="YellowMediumPriority">#D1C338</color>
+    <color name="BlueLowPriority">#05CEFA</color>
+
+</resources>

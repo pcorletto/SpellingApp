@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SpellingApp</string>
+    <string name="main_title1">Spelling App</string>
+    <string name="main_title2">For Samantha\n developed by Daddy</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="spelling_bee_btn_prompt">Spelling Bee</string>
+    <string name="store_btn_prompt">Store a New Word</string>
+    <string name="list_btn_prompt">List of Words</string>
+    <string name="PREF_FILE">PREF_FILE</string>
+    <string name="WORD_LIST">WORD_LIST</string>
+    <string name="WORD_ID">WORD_ID</string>
+    <string name="ROW_NUMBER">ROW_NUMBER</string>
+    <string name="no_words_prompt">There are no words to display!</string>
+    <string name="return_main_button_label">Return to the Main Screen</string>
+    <string name="delete_selected_words_button">Delete Checked Words</string>
+    <string name="title_activity_store">StoreActivity</string>
+    <string name="title_activity_display_list">DisplayListActivity</string>
+    <string name="title_activity_spelling_bee">SpellingBeeActivity</string>
+    <string name="store_title">Store a New Word</string>
+    <string name="word_title_lbl">Enter a New Word:</string>
+    <string name="image_lbl">Enter a New Image:</string>
+    <string name="store_lbl">Store</string>
+
+</resources>
