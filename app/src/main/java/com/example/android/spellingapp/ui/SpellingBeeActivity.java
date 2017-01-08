@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import java.util.Random;
 
 public class SpellingBeeActivity extends ActionBarActivity {
 
+    private WebView webView;
     private ImageView image;
     private TextView wordTextView;
     private ImageButton rewindButton, backButton, playButton, nextButton, forwardButton;
@@ -30,7 +32,9 @@ public class SpellingBeeActivity extends ActionBarActivity {
     ReloadListFromDB reloadedList = new ReloadListFromDB();
     MediaPlayer player;
 
-    String randomWord, currentLetter, builderStr;
+    String currentLetter, builderStr;
+
+    public static String randomWord;
 
     int randomNumber, letterPosition, wordPosition;
 
@@ -41,6 +45,7 @@ public class SpellingBeeActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spelling_bee);
 
+        webView = (WebView) findViewById(R.id.webView);
         image = (ImageView) findViewById(R.id.image);
         wordTextView = (TextView) findViewById(R.id.wordTextView);
         rewindButton = (ImageButton) findViewById(R.id.rewindButton);
@@ -58,6 +63,8 @@ public class SpellingBeeActivity extends ActionBarActivity {
         randomWord = "";
 
         currentLetter = "";
+
+        getPictureForSpellingWord();
 
         tts=new TextToSpeech(SpellingBeeActivity.this, new TextToSpeech.OnInitListener() {
 
@@ -100,6 +107,9 @@ public class SpellingBeeActivity extends ActionBarActivity {
 
                 letterPosition++;
 
+                // If the position is at the end of the word, pronounce the whole word
+                // using the text to speech element, and also highlight the entire word.
+
                 if (letterPosition > randomWord.length() - 1) {
 
                     if(tts!=null){
@@ -109,6 +119,9 @@ public class SpellingBeeActivity extends ActionBarActivity {
                     letterPosition = randomWord.length() - 1;
                     tts.setLanguage(Locale.US);
                     tts.speak(randomWord, TextToSpeech.QUEUE_ADD, null);
+
+                    highlightAllLetters(randomWord);
+                    letterPosition++;
 
                 }
 
@@ -130,6 +143,12 @@ public class SpellingBeeActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
+                if (letterPosition > randomWord.length() - 1) {
+
+                    letterPosition = randomWord.length() - 1;
+
+                }
+
                 // Highlight and display the current letter being spelled
 
                 highlightCurrentLetter(randomWord, letterPosition);
@@ -144,17 +163,28 @@ public class SpellingBeeActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
+                letterPosition--;
+
                 if(letterPosition <= 0){
 
                     letterPosition = 0;
 
                 }
 
-                else{
+                // If already at the end of the word, go back to the last letter, not the
+                // second to last letter, in case we were playing the last word
 
-                    letterPosition--;
+                if (letterPosition >= randomWord.length() - 1) {
+
+                    letterPosition = randomWord.length() - 1;
 
                 }
+
+                //else{
+
+                    //letterPosition--;
+
+                //}
 
                 // Highlight and display the current letter being spelled
 
@@ -162,6 +192,8 @@ public class SpellingBeeActivity extends ActionBarActivity {
 
                 currentLetter = randomWord.substring(letterPosition, letterPosition + 1);
                 playLetterSound(currentLetter);
+
+                //letterPosition--;
 
             }
         });
@@ -197,6 +229,7 @@ public class SpellingBeeActivity extends ActionBarActivity {
                 // Highlight and display the current letter being spelled
 
                 highlightCurrentLetter(randomWord, letterPosition);
+                getPictureForSpellingWord();
 
             }
         });
@@ -226,6 +259,7 @@ public class SpellingBeeActivity extends ActionBarActivity {
                 // Highlight and display the current letter being spelled
 
                 highlightCurrentLetter(randomWord, letterPosition);
+                getPictureForSpellingWord();
 
             }
         });
@@ -544,6 +578,22 @@ public class SpellingBeeActivity extends ActionBarActivity {
         // Display this random Word in the TextView
 
         wordTextView.setText(Html.fromHtml(builderStr), TextView.BufferType.SPANNABLE);
+
+    }
+
+    public void highlightAllLetters(String word){
+
+        // Display this random Word in the TextView
+
+        wordTextView.setText(Html.fromHtml("<font color='blue'>" + word + "</font>"),
+                TextView.BufferType.SPANNABLE);
+
+    }
+
+    public void getPictureForSpellingWord(){
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.webviewlayout, new PictureFragment()).commit();
 
     }
 

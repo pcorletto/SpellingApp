@@ -6,51 +6,47 @@
                 tools:context="com.example.android.spellingapp.ui.SpellingBeeActivity"
                 android:background="@color/ColorAccent">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/image"
-            android:src="@drawable/spellingbee"
-            android:layout_weight=".4"
-            android:background="@color/ColorPrimaryDark"/>
+            android:layout_height="250dp"
+            android:id="@+id/webviewlayout">
 
-<FrameLayout
+        </FrameLayout>
+
+        <FrameLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight=".3">
+    android:layout_height="150dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:id="@+id/wordTextView"
             android:textSize="72sp"
-            android:text="SamplingWord"
+            android:text="sample"
             android:textColor="@android:color/white"
             android:gravity="center_vertical|center_horizontal"
             android:typeface="serif"/>
 
-
         </LinearLayout>
-
 
     </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight=".3">
+            android:layout_height="100dp"
+            android:orientation="horizontal">
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -103,10 +99,6 @@
                 android:paddingLeft="@dimen/small_padding"/>
 
             </LinearLayout>
-
-
-
-
 
         </LinearLayout>
 
