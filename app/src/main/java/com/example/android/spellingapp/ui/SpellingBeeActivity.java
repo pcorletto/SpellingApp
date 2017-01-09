@@ -213,15 +213,11 @@ public class SpellingBeeActivity extends ActionBarActivity {
                 player = MediaPlayer.create(getApplicationContext(), R.raw.magicwand);
                 player.start();
 
-                if(wordPosition<=0){
+                if(wordPosition < 0){
 
-                    wordPosition = randomWord.length()-1;
-
-                }
-
-                if(wordPosition==randomWord.length()-1){
-
-                    wordPosition = 0;
+                    // Cycle forward to the end of the list of words so that it is accessed
+                    // in a circular fashion
+                    wordPosition = wordPosition + reloadedList.getListSize();
 
                 }
 
@@ -251,7 +247,8 @@ public class SpellingBeeActivity extends ActionBarActivity {
 
                 if(wordPosition>reloadedList.getListSize()-1){
 
-                    wordPosition--;
+                    // Cycle back to the beginning of the word using modulus
+                    wordPosition = wordPosition % reloadedList.getListSize();
 
                 }
 
