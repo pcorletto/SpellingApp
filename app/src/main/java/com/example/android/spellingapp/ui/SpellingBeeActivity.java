@@ -13,6 +13,7 @@ import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.spellingapp.R;
 import com.example.android.spellingapp.model.ReloadListFromDB;
@@ -78,7 +79,9 @@ public class SpellingBeeActivity extends ActionBarActivity {
                         Log.e("error", "This Language is not supported");
                     }
                     else{
-                        //ConvertTextToSpeech();
+
+                        //callTTS(randomWord);
+
                     }
                 }
                 else
@@ -112,13 +115,11 @@ public class SpellingBeeActivity extends ActionBarActivity {
 
                 if (letterPosition > randomWord.length() - 1) {
 
-                    if(tts!=null){
-                        tts.stop();
-                    }
-
                     letterPosition = randomWord.length() - 1;
-                    tts.setLanguage(Locale.US);
-                    tts.speak(randomWord, TextToSpeech.QUEUE_ADD, null);
+
+                    callTTS(randomWord);
+
+                    Toast.makeText(SpellingBeeActivity.this, randomWord, Toast.LENGTH_LONG).show();
 
                     highlightAllLetters(randomWord);
                     letterPosition++;
@@ -145,7 +146,9 @@ public class SpellingBeeActivity extends ActionBarActivity {
 
                 if (letterPosition > randomWord.length() - 1) {
 
-                    letterPosition = randomWord.length() - 1;
+                    // If reached the end of the word, start over again from the first letter.
+
+                    letterPosition = 0;
 
                 }
 
@@ -597,6 +600,15 @@ public class SpellingBeeActivity extends ActionBarActivity {
 
     }
 
+    public void callTTS(String word){
+
+        tts.setLanguage(Locale.US);
+        tts.speak(word, TextToSpeech.QUEUE_ADD, null);
+
+    }
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -625,8 +637,8 @@ public class SpellingBeeActivity extends ActionBarActivity {
 
         if(tts != null){
 
-            tts.stop();
-            tts.shutdown();
+            /*tts.stop();
+            tts.shutdown();*/
         }
         super.onPause();
     }
