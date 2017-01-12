@@ -1,7 +1,9 @@
 package com.example.android.spellingapp.ui;
 
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
@@ -55,8 +57,6 @@ public class SpellingBeeActivity extends ActionBarActivity {
         nextButton = (ImageButton) findViewById(R.id.nextButton);
         forwardButton = (ImageButton) findViewById(R.id.forwardButton);
 
-        String searchItem = "";
-
         letterPosition = 0;
 
         wordPosition = 0;
@@ -89,7 +89,26 @@ public class SpellingBeeActivity extends ActionBarActivity {
             }
         });
 
-        mWordList = reloadedList.reloadListFromDB("get", searchItem, getApplicationContext());
+        SharedPreferences sharedPrefs =
+                PreferenceManager.getDefaultSharedPreferences(this);
+
+        String sortOrder = sharedPrefs.getString(
+                getString(R.string.pref_sort_key),
+                getString(R.string.pref_sort_default));
+
+        String searchItem = "";
+
+        if(sortOrder.equals("no sort")) {
+
+            mWordList = reloadedList.reloadListFromDB("get", searchItem, getApplicationContext());
+
+        }
+
+        else if(sortOrder.equals("alphabetical")){
+
+            mWordList = reloadedList.reloadListFromDB("sort", searchItem, getApplicationContext());
+
+        }
 
         int listSize = reloadedList.getListSize();
 

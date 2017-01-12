@@ -1,8 +1,10 @@
 package com.example.android.spellingapp.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,6 +15,7 @@ import android.widget.ListView;
 import com.example.android.spellingapp.R;
 import com.example.android.spellingapp.adapters.WordItemAdapter;
 import com.example.android.spellingapp.model.ReloadListFromDB;
+import com.example.android.spellingapp.model.SettingsActivity;
 import com.example.android.spellingapp.model.WordDbHelper;
 import com.example.android.spellingapp.model.WordItem;
 import com.example.android.spellingapp.model.WordList;
@@ -56,9 +59,26 @@ public class DisplayListActivity extends ActionBarActivity {
 
         listview = (ListView) findViewById(android.R.id.list);
 
+        SharedPreferences sharedPrefs =
+                PreferenceManager.getDefaultSharedPreferences(this);
+
+        String sortOrder = sharedPrefs.getString(
+                getString(R.string.pref_sort_key),
+                getString(R.string.pref_sort_default));
+
         String searchItem = "";
 
-        mWordList = reloadedList.reloadListFromDB("sort", searchItem, getApplicationContext());
+        if(sortOrder.equals("no sort")) {
+
+            mWordList = reloadedList.reloadListFromDB("get", searchItem, getApplicationContext());
+
+        }
+
+        else if(sortOrder.equals("alphabetical")){
+
+            mWordList = reloadedList.reloadListFromDB("sort", searchItem, getApplicationContext());
+
+        }
 
         for(int i=0; i<reloadedList.getListSize(); i++){
 
@@ -91,7 +111,10 @@ public class DisplayListActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+
+            Intent intent = new Intent(DisplayListActivity.this, SettingsActivity.class);
+            startActivity(intent);
+
         }
 
         if (id == R.id.action_home){
