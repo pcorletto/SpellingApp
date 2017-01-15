@@ -42,36 +42,44 @@ public class ReloadListFromDB {
 
             cursor = wordDbHelper.getWordItem(sqLiteDatabase);
         }
+
         else if (selector.equals("sort")){
 
             cursor = wordDbHelper.sortWordItems(sqLiteDatabase);
         }
 
-        // Initialize the row number
+        else if (selector.equals("random")){
 
-        mRowNumber = 0;
+            cursor = wordDbHelper.randomizeWordItems(sqLiteDatabase);
 
-        if(cursor.moveToFirst()){
-
-            do{
-                int word_ID;
-                String word, image;
-
-                word_ID = cursor.getInt(0);
-                word = cursor.getString(1);
-                image = cursor.getString(2);
-
-                mWordItem = new WordItem(word_ID, word, image);
-
-                mWordList.addWordItem(mWordItem, mRowNumber);
-
-                mRowNumber++;
-
-            }
-
-            while(cursor.moveToNext());
         }
 
+            // Initialize the row number
+
+            mRowNumber = 0;
+
+            if (cursor.moveToFirst()) {
+
+                do {
+                    int word_ID;
+                    String word, image;
+
+                    word_ID = cursor.getInt(0);
+                    word = cursor.getString(1);
+                    image = cursor.getString(2);
+
+                    mWordItem = new WordItem(word_ID, word, image);
+
+                    mWordList.addWordItem(mWordItem, mRowNumber);
+
+                    mRowNumber++;
+
+                }
+
+                while (cursor.moveToNext());
+            }
+
+        
         return mWordList;
 
     }

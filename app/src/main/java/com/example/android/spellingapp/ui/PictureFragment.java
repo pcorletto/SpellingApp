@@ -38,7 +38,7 @@ public class PictureFragment extends Fragment {
 
         webView.setWebViewClient(new WebViewClient());
 
-        randomWord = SpellingBeeActivity.randomWord;
+        randomWord = SpellingBeeActivity.spellingWord;
 
         url = "http://www.google.com/images?q=" + randomWord;
 

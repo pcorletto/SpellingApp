@@ -103,6 +103,27 @@ public class WordDbHelper extends SQLiteOpenHelper {
 
     }
 
+    public Cursor randomizeWordItems(SQLiteDatabase db){
+
+        Cursor cursor1, cursor2;
+
+        cursor1 = db.rawQuery("SELECT * FROM " + WordListDB.NewWordItem.TABLE_NAME, null);
+
+        int count = cursor1.getCount();
+
+        count = count / 2;
+
+        cursor2 = db.rawQuery("SELECT * FROM " + WordListDB.NewWordItem.TABLE_NAME +
+                " WHERE " + WordListDB.NewWordItem.WORD_ID + " IN (SELECT " +
+                WordListDB.NewWordItem.WORD_ID + " FROM " + WordListDB.NewWordItem.TABLE_NAME
+                + " ORDER BY RANDOM() LIMIT " + count + ")", null);
+
+        return cursor2;
+
+    }
+
+
+
     public void updateWord(String id, String word, SQLiteDatabase sqLiteDatabase){
 
         ContentValues contentValues = new ContentValues();

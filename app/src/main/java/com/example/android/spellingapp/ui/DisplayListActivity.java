@@ -80,6 +80,12 @@ public class DisplayListActivity extends ActionBarActivity {
 
         }
 
+        else if(sortOrder.equals("random")){
+
+            mWordList = reloadedList.reloadListFromDB("random", searchItem, getApplicationContext());
+
+        }
+
         for(int i=0; i<reloadedList.getListSize(); i++){
 
             list.add(mWordList.mWordItem[i]);

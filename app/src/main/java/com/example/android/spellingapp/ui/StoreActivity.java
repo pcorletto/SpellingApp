@@ -1,6 +1,7 @@
 package com.example.android.spellingapp.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import com.example.android.spellingapp.model.WordDbHelper;
 
 public class StoreActivity extends ActionBarActivity {
 
-    private EditText wordEditText, imageEditText;
+    private EditText wordEditText;
     private Button storeButton, displayButton;
 
     // Data structures
@@ -38,7 +39,6 @@ public class StoreActivity extends ActionBarActivity {
         setContentView(R.layout.activity_store);
 
         wordEditText = (EditText) findViewById(R.id.wordEditText);
-        imageEditText = (EditText) findViewById(R.id.imageEditText);
         storeButton = (Button) findViewById(R.id.storeButton);
         displayButton = (Button) findViewById(R.id.displayButton);
 
@@ -51,6 +51,17 @@ public class StoreActivity extends ActionBarActivity {
 
             }
         });
+
+        displayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), DisplayListActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
 
     }
 
@@ -66,7 +77,6 @@ public class StoreActivity extends ActionBarActivity {
         sqLiteDatabase = wordDbHelper.getWritableDatabase();
 
         mWord = wordEditText.getText().toString();
-        mImage = imageEditText.getText().toString();
 
         // This block only applies if primary key goes from 000 to XXX counter
         // Before inserting the item, retrieve the last value of mWordID (if we have a primary key that

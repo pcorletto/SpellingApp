@@ -32,7 +32,10 @@
     <string name="pref_sort_label_alphabetical">Alphabetically: A-Z</string>
 
     <!-- Label for no sort option in sort preference [CHAR LIMIT=25] -->
-    <string name="pref_sort_label_no_sort">Not Sorted</string>
+    <string name="pref_sort_label_no_sort">As stored</string>
+
+    <!-- Label for random option in sort preference [CHAR LIMIT=25] -->
+    <string name="pref_sort_label_random">Random order</string>
 
     <!-- Key name for sort preference in SharedPreferences [CHAR LIMIT=NONE] -->
     <string name="pref_sort_key" translatable="false">sort</string>
@@ -45,5 +48,8 @@
 
     <!-- Value in SharedPreferences for no sort option [CHAR LIMIT=NONE] -->
     <string name="pref_sort_no_sort" translatable="false">no sort</string>
+
+    <!-- Value in SharedPreferences for random option [CHAR LIMIT=NONE] -->
+    <string name="pref_sort_random" translatable="false">random</string>
 
 </resources>
